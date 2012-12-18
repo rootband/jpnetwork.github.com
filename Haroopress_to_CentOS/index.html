@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>하루프레스 설치하기[CentOS편] ROOT BLOG</title>
+    <meta name="description" content="DEVPIA">
+    <meta name="author" content="Jaehun Park">
+    <meta name="keywords" content="javascript,php5,html,gcc,mfc,bc" />
+    <meta name="generator" content="haroopress v0.9.2" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link href="/rss.xml" rel="alternate" title="ROOT BLOG" type="application/rss+xml">
+
+    <!-- Le styles -->
+    <link rel="canonical" href="http://www.root.so">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/markdown.css" rel="stylesheet">
+    <link href="/css/haroopress.css" rel="stylesheet">
+    <link href="/css/theme.css" rel="stylesheet">
+    <link href="/css/code/default.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-64.png">
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/apps/toc.js"></script>
+</head>
+<body data-spy="scroll" data-target=".subnav" data-offset="50">
+
+        <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <a class="pull-right" href="/rss.xml"><span class="icon-rss"></span></a>
+          
+
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/archives">Archives</a>
+              </li>
+              <li>
+                <a href="/slides">Slides</a>
+              </li>
+                
+                    <li>
+                        <a href="/Haroopress_to_CentOS/">하루프레스 설치하기[CentOS편]</a>
+                    </li>
+                
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    
+<link href="/css/code/default.css" rel="stylesheet">
+
+<div class="container page-page">
+    <div class="row">
+        <div class="span12">
+            <div class="well markdown-wrapper">
+                <ul class="unstyled share pull-right">
+                    <li class="twitter">
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-url="http://www.root.so/Haroopress_to_CentOS/" data-via="jaehun" data-hashtags="HarooPress,CentOS,Linux">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+                        <!--a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                        <script type="text/javascript" src="//platform.twitter.com/widgets.js"></script-->
+                    </li>
+                    <li class="facebook">
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) {return;}
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                        <div class="fb-like" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true" data-href="http://www.root.so/Haroopress_to_CentOS/"></div>
+                    </li>
+                    <li class="google">
+                        <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+                        <g:plusone size="medium"></g:plusone>
+                    </li>
+                </ul>
+                <h3 id="toc_21">CentOS에 하루프레스 설치하기</h3>
+<p><a href="http://haroopress.com">하루프레스</a>는 <a href="http://twitter.com/rhiokim">@rhiokim</a>님께서 만드신
+node기반의 정적 페이지 기반의 블로깅 엔진입니다.</p>
+<blockquote>
+<p><em class="label label-important"><strong><i class="icon-flag"></i> 하루프레스 설치하기전 준비 사항</strong></em></p></blockquote>
+<p>하루프레스는 기본적으로 아래의 사항들을 이용하여 설치가 가능합니다.</p>
+<h3 id="toc_22">CentOS Linux Version</h3>
+<p>   5.x : python-2.4.3-46.el5 (Python 컴파일후 아래의 방법을 수행하시면 됩니다.)</p><p>   6.x : python-2.6.6-29.el6 (사용가능)</p>
+<h3 id="toc_23">github.com 계정 생성</h3>
+<p><code>하루 프레스</code> 엔진은 노드와 6가지의 오픈소스의 조합으로 만들어졌습니다. 그렇다 보니 코어 엔진을 제외한 대부분의 모듈들이 Git 서브 모듈로 관리되고 있습니다.  </p><p>물론 <code>하루 프레스</code> 도 Git 을 통해 관리되고 있습니다.  아래 공식 사이트에서 각 운영체제에 맞는 버젼을 설치하세요.</p>
+<ul>
+<li><a href="http://git-scm.com/">http://git-scm.com/</a></li>
+</ul>
+
+<h3 id="toc_24">node 설치</h3>
+<pre><code class="shell"><span class="title">cd</span> /usr/local/src/
+<span class="title">wget</span> http://nodejs.org/dist/v0<span class="number">.8</span><span class="number">.2</span>/node-v0<span class="number">.8</span><span class="number">.16</span>.tar.gz
+<span class="title">tar</span> xvfz node-v0<span class="number">.8</span><span class="number">.16</span>.tar.gz 
+<span class="title">cd</span> node-v0<span class="number">.8</span><span class="number">.16</span>
+./configure <span class="comment">--prefix=/usr</span>
+<span class="title">make</span>    
+<span class="title">make</span> install
+</code></pre><p>설치 완료후 버젼 확인 및 명령어 수행 테스트   </p><pre><code class="shell">[root<span class="variable">@JTE</span> help]<span class="comment"># node -v</span>
+v<span class="number">0</span>.<span class="number">8.16</span> 
+[root<span class="variable">@JTE</span> help]<span class="comment"># npm --version</span>
+<span class="number">1.1</span>.<span class="number">69</span>
+</code></pre>
+<h3 id="toc_25">node-gyp 설치</h3>
+<p>[root@JTE help]# npm install -g node-gyp</p><pre><code class="">    설치 완료시 아래와 같이 출력됩니다.
+    node-gyp<span class="variable">@0</span>.<span class="number">8.1</span> /usr/lib/node_modules/node-gyp
+    ├── osenv<span class="variable">@0</span>.<span class="number">0</span>.<span class="number">3</span>
+    ├── graceful-fs<span class="variable">@1</span>.<span class="number">1.14</span>
+    ├── rimraf<span class="variable">@2</span>.<span class="number">0</span>.<span class="number">3</span>
+    ├── mkdirp<span class="variable">@0</span>.<span class="number">3.4</span>
+    ├── request<span class="variable">@2</span>.<span class="number">9.203</span>
+    ├── which<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">5</span>
+    ├── semver<span class="variable">@1</span>.<span class="number">1.1</span>
+    ├── fstream<span class="variable">@0</span>.<span class="number">1.19</span> (inherits<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">0</span>)
+    ├── <span class="keyword">glob</span><span class="variable">@3</span>.<span class="number">1.14</span> (inherits<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">0</span>)
+    ├── npmlog<span class="variable">@0</span>.<span class="number">0</span>.<span class="number">2</span> (ansi<span class="variable">@0</span>.<span class="number">1.2</span>)
+    ├── tar<span class="variable">@0</span>.<span class="number">1.14</span> (inherits<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">0</span>, block-stream<span class="variable">@0</span>.<span class="number">0</span>.<span class="number">6</span>)
+    ├── nopt<span class="variable">@2</span>.<span class="number">0</span>.<span class="number">0</span> (abbrev<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">3</span>)
+    └── minimatch<span class="variable">@0</span>.<span class="number">2.9</span> (sigmund<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">0</span>, lru-cache<span class="variable">@2</span>.<span class="number">0</span>.<span class="number">4</span>)
+    [root<span class="variable">@JTE</span> help]<span class="comment">#</span>
+</code></pre>
+<h3 id="toc_26">github에 사용될 SSH Key 생성</h3>
+<p>일반 계정으로 사용할 예정이므로, 반드시 일반 계정으로 접속하여 생성하시면 됩니다.</p><pre><code class="shell"><span class="title">[</span><span class="comment">help@JTE</span> <span class="comment">~</span>]<span class="comment">$</span> <span class="comment">ssh</span>-<span class="comment">keygen</span> 
+<span class="comment">Generating</span> <span class="comment">public/private</span> <span class="comment">rsa</span> <span class="comment">key</span> <span class="comment">pair</span>.
+<span class="comment">Enter</span> <span class="comment">file</span> <span class="comment">in</span> <span class="comment">which</span> <span class="comment">to</span> <span class="comment">save</span> <span class="comment">the</span> <span class="comment">key</span> <span class="comment">(/home/help/</span>.<span class="comment">ssh/id_rsa):</span> 
+<span class="comment">Created</span> <span class="comment">directory</span> <span class="comment">'/home/help/</span>.<span class="comment">ssh'</span>.
+<span class="comment">Enter</span> <span class="comment">passphrase</span> <span class="comment">(empty</span> <span class="comment">for</span> <span class="comment">no</span> <span class="comment">passphrase):</span> 
+<span class="comment">Enter</span> <span class="comment">same</span> <span class="comment">passphrase</span> <span class="comment">again:</span> 
+<span class="comment">Your</span> <span class="comment">identification</span> <span class="comment">has</span> <span class="comment">been</span> <span class="comment">saved</span> <span class="comment">in</span> <span class="comment">/home/help/</span>.<span class="comment">ssh/id_rsa</span>.
+<span class="comment">Your</span> <span class="comment">public</span> <span class="comment">key</span> <span class="comment">has</span> <span class="comment">been</span> <span class="comment">saved</span> <span class="comment">in</span> <span class="comment">/home/help/</span>.<span class="comment">ssh/id_rsa</span>.<span class="comment">pub</span>.
+<span class="comment">The</span> <span class="comment">key</span> <span class="comment">fingerprint</span> <span class="comment">is:</span>
+<span class="comment">66:72:cf:d7:cd:1a:a2:6c:5f:95:88:0c:11:b7:42:f0</span> <span class="comment">help@JTE</span>
+<span class="comment">The</span> <span class="comment">key's</span> <span class="comment">randomart</span> <span class="comment">image</span> <span class="comment">is:</span>
+<span class="literal">+</span><span class="literal">-</span><span class="literal">-</span><span class="title">[</span> <span class="comment">RSA</span> <span class="comment">2048</span>]<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>
+<span class="comment">|</span>       <span class="string">.</span><span class="string">.</span><span class="literal">+</span><span class="string">.</span><span class="string">.</span>     <span class="comment">|</span>
+<span class="comment">|</span>        <span class="comment">o</span> <span class="comment">o</span> <span class="string">.</span>    <span class="comment">|</span>
+<span class="comment">|</span>         <span class="comment">E</span> <span class="string">.</span>     <span class="comment">|</span>
+<span class="comment">|</span>          <span class="literal">+</span> <span class="string">.</span> <span class="string">.</span> <span class="string">.</span><span class="comment">|</span>
+<span class="comment">|</span>      <span class="string">.</span> <span class="comment">S</span>  <span class="comment">o</span> <span class="string">.</span> <span class="string">.</span><span class="string">.</span><span class="comment">|</span>
+<span class="comment">|</span>       <span class="comment">=</span> <span class="comment">o</span>   <span class="string">.</span> <span class="literal">+</span> <span class="comment">|</span>
+<span class="comment">|</span>          <span class="comment">o</span> <span class="comment">o</span> <span class="literal">+</span> <span class="comment">o|</span>
+<span class="comment">|</span>         <span class="string">.</span><span class="string">.</span><span class="comment">o</span> <span class="comment">o</span> <span class="comment">o</span> <span class="comment">|</span>
+<span class="comment">|</span>         <span class="string">.</span><span class="comment">o</span>.<span class="string">.</span> <span class="string">.</span>  <span class="comment">|</span>
+<span class="literal">+</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">+</span>
+<span class="title">[</span><span class="comment">help@JTE</span> <span class="comment">~</span>]<span class="comment">$</span> <span class="comment">ssh</span> <span class="comment">git@github</span>.<span class="comment">com</span> <span class="literal">-</span><span class="comment">T</span>
+<span class="comment">Permission</span> <span class="comment">denied</span> <span class="comment">(publickey)</span>.
+</code></pre><p>Permission denied (publickey)의 이유는 github.com에 상단 우측에 account setting에서 ssh-keys를 등록하지</p><p>않아 발생되는 것입니다. 사이트에서 방금 생성하셨던 /home/help/.ssh/id_rsa.pub 파일을 열어 해당 키를 넣어주시기 바랍니다.</p><p>등록후 다시 테스트하면 아래와 같이 출력될 것입니다.</p><pre><code class="">[help<span class="decorator">@JTE ~]$ ssh git@github.com -T</span>
+Hi ossteam! Yo<span class="string">u've successfully authenticated, but GitHub does not provide shell access.
+[help@JTE ~]$ 
+</code></pre>
+<h3 id="toc_27">haroopress</h3>
+<p>소스 복제할 때에는 아래와 같이 복제할 위치를 사이트명으로 해주는 것도 좋습니다.</p><pre><code class="">// <span class="class">Github</span>.com 의 소스를 내 <span class="class">PC</span> 로 복제합니다.
+<span class="char">$ </span>git clone git@github.<span class="method">com:</span>rhiokim/haroopress.git /path/to/[domain]
+<span class="char">$ </span>git clone git@github.<span class="method">com:</span>rhiokim/haroopress.git /home/help/jpnetwork.github.com
+
+[help@<span class="class">JTE</span> ~]<span class="char">$ </span>git clone git@github.<span class="method">com:</span>/rhiokim/haroopress.git haroopress
+<span class="class">Initialized</span> empty <span class="class">Git</span> repository in /home/help/haroopress/.git/
+<span class="method">remote:</span> <span class="class">Counting</span> <span class="method">objects:</span> <span class="number">5948</span>, done.
+<span class="method">remote:</span> <span class="class">Compressing</span> <span class="method">objects:</span> <span class="number">100</span>% (<span class="number">2962</span>/<span class="number">2962</span>), done.
+<span class="method">remote:</span> <span class="class">Total</span> <span class="number">5948</span> (delta <span class="number">2622</span>), reused <span class="number">5821</span> (delta <span class="number">2496</span>)
+<span class="class">Receiving</span> <span class="method">objects:</span> <span class="number">100</span>% (<span class="number">5948</span>/<span class="number">5948</span>), <span class="number">15.12</span> <span class="class">MiB</span> | <span class="number">1.87</span> <span class="class">MiB</span>/s, done.
+<span class="class">Resolving</span> <span class="method">deltas:</span> <span class="number">100</span>% (<span class="number">2622</span>/<span class="number">2622</span>), done.
+[help@<span class="class">JTE</span> ~]<span class="char">$ </span> 
+</code></pre><p>설치는 완료되었지만, 완벽히 진행된 것이 아닙니다. node-git에러가 동작됩니다.</p><pre><code class="">[help@<span class="type">JTE</span> haroopress]$ make init
+<span class="title">npm</span> install -g node-gyp
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/node-gyp
+<span class="title">npm</span> http <span class="number">304</span> https://registry.npmjs.org/node-gyp
+<span class="title">npm</span> <span class="type">ERR</span>! error rolling back <span class="type">Error</span>: <span class="type">EACCES</span>, unlink<span class="string"> '/usr/bin/node-gyp'</span>
+<span class="title">npm</span> <span class="type">ERR</span>! error rolling back  node-gyp@<span class="number">0.8</span><span class="number">.1</span> { [<span class="type">Error</span>: <span class="type">EACCES</span>, unlink<span class="string"> '/usr/bin/node-gyp'</span>] errno: <span class="number">3</span>, code:<span class="string"> 'EACCES'</span>, path:<span class="string"> '/usr/bin/node-gyp'</span> }
+<span class="title">npm</span> <span class="type">ERR</span>! <span class="type">Error</span>: <span class="type">EACCES</span>, unlink<span class="string"> '/usr/bin/node-gyp'</span>
+<span class="title">npm</span> <span class="type">ERR</span>!  { [<span class="type">Error</span>: <span class="type">EACCES</span>, unlink<span class="string"> '/usr/bin/node-gyp'</span>] errno: <span class="number">3</span>, code:<span class="string"> 'EACCES'</span>, path:<span class="string"> '/usr/bin/node-gyp'</span> }
+<span class="title">npm</span> <span class="type">ERR</span>! 
+<span class="title">npm</span> <span class="type">ERR</span>! <span class="type">Please</span> try running this command again <span class="keyword">as</span> root/<span class="type">Administrator</span>.
+
+<span class="title">npm</span> <span class="type">ERR</span>! <span class="type">System</span> <span class="type">Linux</span> <span class="number">2.6</span><span class="number">.32</span>-<span class="number">279.</span>el6.x86_64
+<span class="title">npm</span> <span class="type">ERR</span>! command <span class="string">"/usr/bin/node"</span> <span class="string">"/usr/bin/npm"</span> <span class="string">"install"</span> <span class="string">"-g"</span> <span class="string">"node-gyp"</span>
+<span class="title">npm</span> <span class="type">ERR</span>! cwd /home/help/haroopress
+<span class="title">npm</span> <span class="type">ERR</span>! node -v v0<span class="number">.8</span><span class="number">.16</span>
+<span class="title">npm</span> <span class="type">ERR</span>! npm -v <span class="number">1.1</span><span class="number">.69</span>
+<span class="title">npm</span> <span class="type">ERR</span>! path /usr/bin/node-gyp
+<span class="title">npm</span> <span class="type">ERR</span>! code <span class="type">EACCES</span>
+<span class="title">npm</span> <span class="type">ERR</span>! errno <span class="number">3</span>
+<span class="title">npm</span> <span class="type">ERR</span>! stack <span class="type">Error</span>: <span class="type">EACCES</span>, unlink<span class="string"> '/usr/bin/node-gyp'</span>
+<span class="title">npm</span> <span class="type">ERR</span>! 
+<span class="title">npm</span> <span class="type">ERR</span>! <span class="type">Additional</span> logging details can be found <span class="keyword">in</span>:
+<span class="title">npm</span> <span class="type">ERR</span>!     /home/help/haroopress/npm-debug.log
+<span class="title">npm</span> <span class="type">ERR</span>! <span class="keyword">not</span> ok code <span class="number">0</span>
+<span class="title">make</span>: *** [initialize] <span class="type">Error</span> <span class="number">3</span>
+</code></pre><p>[help@JTE haroopress]$ vi Makefile //해당 파일에 대하여 수정합니다.</p><pre><code class=""><span class="comment">initialize:</span>
+        <span class="comment">npm</span> <span class="comment">install</span> <span class="literal">-</span><span class="comment">g</span> <span class="comment">node</span>-<span class="comment">gyp</span> 
+</code></pre><p>위에서 아래로 변경하여 줍니다.</p><pre><code class=""><span class="title">initialize</span>:
+        npm install node-gyp
+</code></pre><p>다시 초기화 시작.</p><pre><code class="">[help@<span class="type">JTE</span> haroopress]$ make init
+<span class="title">npm</span> install node-gyp
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/node-gyp
+<span class="title">npm</span> http <span class="number">304</span> https://registry.npmjs.org/node-gyp
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/glob
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/graceful-fs
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/fstream
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/minimatch
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/nopt
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/npmlog
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/osenv
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/request
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/rimraf
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/semver
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/tar
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/which
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/graceful-fs
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/graceful-fs/-/graceful-fs-<span class="number">1.1</span><span class="number">.14</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/npmlog
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/npmlog/-/npmlog-<span class="number">0.0</span><span class="number">.2</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/osenv
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/osenv/-/osenv-<span class="number">0.0</span><span class="number">.3</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/fstream
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/fstream/-/fstream-<span class="number">0.1</span><span class="number">.19</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/minimatch
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/minimatch/-/minimatch-<span class="number">0.2</span><span class="number">.9</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/glob
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/glob/-/glob-<span class="number">3.1</span><span class="number">.14</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/rimraf
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/rimraf/-/rimraf-<span class="number">2.0</span><span class="number">.3</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/nopt
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/nopt/-/nopt-<span class="number">2.0</span><span class="number">.0</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/semver
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/semver/-/semver-<span class="number">1.1</span><span class="number">.1</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/graceful-fs/-/graceful-fs-<span class="number">1.1</span><span class="number">.14</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/npmlog/-/npmlog-<span class="number">0.0</span><span class="number">.2</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/tar
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/tar/-/tar-<span class="number">0.1</span><span class="number">.14</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/which
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/which/-/which-<span class="number">1.0</span><span class="number">.5</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/request
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/request/-/request-<span class="number">2.9</span><span class="number">.203</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/osenv/-/osenv-<span class="number">0.0</span><span class="number">.3</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/fstream/-/fstream-<span class="number">0.1</span><span class="number">.19</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/minimatch/-/minimatch-<span class="number">0.2</span><span class="number">.9</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/glob/-/glob-<span class="number">3.1</span><span class="number">.14</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/rimraf/-/rimraf-<span class="number">2.0</span><span class="number">.3</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/nopt/-/nopt-<span class="number">2.0</span><span class="number">.0</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/semver/-/semver-<span class="number">1.1</span><span class="number">.1</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/request/-/request-<span class="number">2.9</span><span class="number">.203</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/which/-/which-<span class="number">1.0</span><span class="number">.5</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/tar/-/tar-<span class="number">0.1</span><span class="number">.14</span>.tgz
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/ansi
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/abbrev
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/lru-cache
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/sigmund
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/inherits
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/inherits
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/inherits
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/block-stream
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/lru-cache
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/lru-cache/-/lru-cache-<span class="number">2.0</span><span class="number">.4</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/sigmund
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/sigmund/-/sigmund-<span class="number">1.0</span><span class="number">.0</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/ansi
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/ansi/-/ansi-<span class="number">0.1</span><span class="number">.2</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/inherits
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/inherits/-/inherits-<span class="number">1.0</span><span class="number">.0</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/inherits
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/abbrev
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/abbrev/-/abbrev-<span class="number">1.0</span><span class="number">.3</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/block-stream
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/block-stream/-/block-stream-<span class="number">0.0</span><span class="number">.6</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/lru-cache/-/lru-cache-<span class="number">2.0</span><span class="number">.4</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/sigmund/-/sigmund-<span class="number">1.0</span><span class="number">.0</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/ansi/-/ansi-<span class="number">0.1</span><span class="number">.2</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/inherits/-/inherits-<span class="number">1.0</span><span class="number">.0</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/block-stream/-/block-stream-<span class="number">0.0</span><span class="number">.6</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/abbrev/-/abbrev-<span class="number">1.0</span><span class="number">.3</span>.tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/inherits
+<span class="title">npm</span> <span class="type">WARN</span> prefer global node-gyp@<span class="number">0.8</span><span class="number">.1</span> should be installed with -g
+<span class="title">node</span>-gyp@<span class="number">0.8</span><span class="number">.1</span> node_modules/node-gyp
+├── osenv@<span class="number">0.0</span><span class="number">.3</span>
+├── graceful-fs@<span class="number">1.1</span><span class="number">.14</span>
+├── rimraf@<span class="number">2.0</span><span class="number">.3</span>
+├── request@<span class="number">2.9</span><span class="number">.203</span>
+├── which@<span class="number">1.0</span><span class="number">.5</span>
+├── semver@<span class="number">1.1</span><span class="number">.1</span>
+├── minimatch@<span class="number">0.2</span><span class="number">.9</span> (sigmund@<span class="number">1.0</span><span class="number">.0</span>, lru-cache@<span class="number">2.0</span><span class="number">.4</span>)
+├── fstream@<span class="number">0.1</span><span class="number">.19</span> (inherits@<span class="number">1.0</span><span class="number">.0</span>)
+├── npmlog@<span class="number">0.0</span><span class="number">.2</span> (ansi@<span class="number">0.1</span><span class="number">.2</span>)
+├── glob@<span class="number">3.1</span><span class="number">.14</span> (inherits@<span class="number">1.0</span><span class="number">.0</span>)
+├── tar@<span class="number">0.1</span><span class="number">.14</span> (inherits@<span class="number">1.0</span><span class="number">.0</span>, block-stream@<span class="number">0.0</span><span class="number">.6</span>)
+└── nopt@<span class="number">2.0</span><span class="number">.0</span> (abbrev@<span class="number">1.0</span><span class="number">.3</span>)
+<span class="title">git</span> submodule update <span class="comment">--init --recursive</span>
+<span class="type">Submodule</span><span class="string"> 'lib/shower'</span> (http://github.com/rhiokim/shower.git) registered for path<span class="string"> 'lib/shower'</span>
+<span class="type">Submodule</span><span class="string"> 'source/themes'</span> (http://github.com/haroopress/haroopress-themes.git) registered for path<span class="string"> 'source/themes'</span>
+<span class="type">Initialized</span> empty <span class="type">Git</span> repository <span class="keyword">in</span> /home/help/haroopress/lib/shower/.git/
+<span class="title">remote</span>: <span class="type">Counting</span> objects: <span class="number">1149</span>, done.
+<span class="title">remote</span>: <span class="type">Compressing</span> objects: <span class="number">100</span>% (<span class="number">416</span>/<span class="number">416</span>), done.
+<span class="title">remote</span>: <span class="type">Total</span> <span class="number">1149</span> (delta <span class="number">640</span>), reused <span class="number">1116</span> (delta <span class="number">619</span>)
+<span class="type">Receiving</span> objects: <span class="number">100</span>% (<span class="number">1149</span>/<span class="number">1149</span>), <span class="number">7.22</span> <span class="type">MiB</span> | <span class="number">1.58</span> <span class="type">MiB</span>/s, done.
+<span class="type">Resolving</span> deltas: <span class="number">100</span>% (<span class="number">640</span>/<span class="number">640</span>), done.
+<span class="type">Submodule</span> path<span class="string"> 'lib/shower'</span>: checked out<span class="string"> 'e9d8a03fc9a10c436e2d81e3c3012f777fff7b28'</span>
+<span class="type">Initialized</span> empty <span class="type">Git</span> repository <span class="keyword">in</span> /home/help/haroopress/source/themes/.git/
+<span class="title">remote</span>: <span class="type">Counting</span> objects: <span class="number">2049</span>, done.
+<span class="title">remote</span>: <span class="type">Compressing</span> objects: <span class="number">100</span>% (<span class="number">1096</span>/<span class="number">1096</span>), done.
+<span class="title">remote</span>: <span class="type">Total</span> <span class="number">2049</span> (delta <span class="number">1125</span>), reused <span class="number">1846</span> (delta <span class="number">922</span>)
+<span class="type">Receiving</span> objects: <span class="number">100</span>% (<span class="number">2049</span>/<span class="number">2049</span>), <span class="number">20.04</span> <span class="type">MiB</span> | <span class="number">3.79</span> <span class="type">MiB</span>/s, done.
+<span class="type">Resolving</span> deltas: <span class="number">100</span>% (<span class="number">1125</span>/<span class="number">1125</span>), done.
+<span class="type">Submodule</span> path<span class="string"> 'source/themes'</span>: checked out<span class="string"> '33366b849ac678a3386b78a61716ac224a802eec'</span>
+<span class="title">cd</span> ./node_modules/robotskirt;node-gyp rebuild
+<span class="title">gyp</span> info it worked <span class="keyword">if</span> it ends with ok
+<span class="title">gyp</span> info using node-gyp@<span class="number">0.8</span><span class="number">.1</span>
+<span class="title">gyp</span> info using node@<span class="number">0.8</span><span class="number">.16</span> | linux | x64
+<span class="title">gyp</span> info spawn python
+<span class="title">gyp</span> info spawn args [<span class="string"> '/usr/lib/node_modules/node-gyp/gyp/gyp'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   'binding.gyp'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-f'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   'make'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-I'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '/home/help/haroopress/node_modules/robotskirt/build/config.gypi'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-I'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '/usr/lib/node_modules/node-gyp/addon.gypi'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-I'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '/home/help/.node-gyp/0.8.16/common.gypi'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-Dlibrary=shared_library'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-Dvisibility=default'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-Dnode_root_dir=/home/help/.node-gyp/0.8.16'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-Dmodule_root_dir=/home/help/haroopress/node_modules/robotskirt'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '--depth=.'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '--generator-output'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   'build'</span>,
+<span class="title">gyp</span> info spawn args<span class="string">   '-Goutput_dir=.'</span> ]
+<span class="title">gyp</span> info spawn make
+<span class="title">gyp</span> info spawn args [<span class="string"> 'BUILDTYPE=Release'</span>,<span class="string"> '-C'</span>,<span class="string"> 'build'</span> ]
+<span class="title">make</span>[<span class="number">1</span>]: <span class="type">Entering</span> directory `/home/help/haroopress/node_modules/robotskirt/build'
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/autolink.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/buffer.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_href_e.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_html_e.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_html_u.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_js_e.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_js_u.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_uri_e.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_uri_u.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/houdini_xml_e.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/html.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/html_smartypants.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/markdown.o
+  <span class="type">CC</span>(target) <span class="type">Release</span>/obj.target/sundown/src/stack.o
+  <span class="type">AR</span>(target) <span class="type">Release</span>/obj.target/sundown.a
+  <span class="type">CXX</span>(target) <span class="type">Release</span>/obj.target/robotskirt/src/robotskirt.o
+  <span class="type">SOLINK_MODULE</span>(target) <span class="type">Release</span>/obj.target/robotskirt.node
+  <span class="type">SOLINK_MODULE</span>(target) <span class="type">Release</span>/obj.target/robotskirt.node: <span class="type">Finished</span>
+  <span class="type">COPY</span> <span class="type">Release</span>/robotskirt.node
+<span class="title">make</span>[<span class="number">1</span>]: <span class="type">Leaving</span> directory `/home/help/haroopress/node_modules/robotskirt/build'
+<span class="title">gyp</span> info ok 
+<span class="title">cd</span> ./node_modules/locally/;npm install
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/colors
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/colors
+<span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/colors/-/colors-<span class="number">0.6</span><span class="number">.0</span>-<span class="number">1.</span>tgz
+<span class="title">npm</span> http <span class="number">200</span> https://registry.npmjs.org/colors/-/colors-<span class="number">0.6</span><span class="number">.0</span>-<span class="number">1.</span>tgz
+<span class="title">colors</span>@<span class="number">0.6</span><span class="number">.0</span>-<span class="number">1</span> node_modules/colors
+</code></pre><p>성공하였습니다. 아래는 설정 파일을 넣으시면 됩니다.</p><pre><code class=""><span class="comment">========================================</span>
+<span class="comment">=</span> <span class="comment">configurate</span> <span class="comment">haroopress</span>
+<span class="comment">========================================</span>
+<span class="string">.</span><span class="comment">/bin/setup</span>.<span class="comment">js</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Insert</span> <span class="comment">your</span> <span class="comment">site</span> <span class="comment">title</span> <span class="comment">(*)</span> <span class="comment">"My</span> <span class="comment">Haoopress</span> <span class="comment">Blog"</span>
+ &gt; <span class="comment">인터넷세상</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Insert</span> <span class="comment">your</span> <span class="comment">site</span> <span class="comment">description</span> <span class="comment">(*)</span> <span class="comment">"My</span> <span class="comment">Development</span> <span class="comment">diary</span>, <span class="comment">I</span> <span class="comment">love</span> <span class="comment">node</span>.<span class="comment">js</span> <span class="comment">&amp;</span> <span class="comment">javascript"</span>
+ &gt; <span class="comment">이</span> <span class="comment">사이트는</span> <span class="comment">하루프레스로</span> <span class="comment">이용하는</span> <span class="comment">사이트이며</span> <span class="comment">CentOS로</span> <span class="comment">동작되어집니다</span>.
+<span class="comment">haroo</span>&gt; <span class="comment">Insert</span> <span class="comment">site</span> <span class="comment">url</span> <span class="comment">(*)</span> <span class="comment">"http://www</span>.<span class="comment">myblog</span>.<span class="comment">com"</span>
+ &gt; <span class="comment">http://ossteam</span>.<span class="comment">github</span>.<span class="comment">com</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Insert</span> <span class="comment">you</span> <span class="comment">full</span> <span class="comment">name</span> <span class="comment">(*)</span> <span class="comment">"Rhio</span> <span class="comment">Kim</span> <span class="comment">(sync</span> <span class="comment">to</span> <span class="comment">source/data/authors/Rhio</span> <span class="comment">Kim</span>.<span class="comment">markdown)"</span>
+ &gt; <span class="comment">Jaehun</span>, <span class="comment">Park</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Insert</span> <span class="comment">you</span> <span class="comment">gravatar</span> <span class="comment">emaill</span> <span class="comment">address</span> <span class="comment">(*)</span> <span class="comment">"abc123@gmail</span>.<span class="comment">com"</span>
+ &gt; <span class="comment">jaehun@me</span>.<span class="comment">com</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Insert</span> <span class="comment">you</span> <span class="comment">site</span> <span class="comment">meta</span> <span class="comment">information</span> <span class="comment">(*)</span> <span class="comment">"javascript</span>, <span class="comment">css3</span>, <span class="comment">html5"</span>
+ &gt; <span class="comment">php</span>, <span class="comment">linux</span>, <span class="comment">unixc</span>
+<span class="comment">http://ossteam</span>.<span class="comment">github</span>.<span class="comment">com</span> <span class="comment">Meta</span> <span class="comment">Information</span>
+<span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span><span class="literal">-</span>
+<span class="comment">{</span>
+    <span class="comment">"version":</span> <span class="comment">"0</span>.<span class="comment">9</span>.<span class="comment">2"</span>,
+    <span class="comment">"defaultTitle":</span> <span class="comment">"인터넷세상"</span>,
+    <span class="comment">"description":</span> <span class="comment">"이</span> <span class="comment">사이트는</span> <span class="comment">하루프레스로</span> <span class="comment">이용하는</span> <span class="comment">사이트이며</span> <span class="comment">CentOS로</span> <span class="comment">동작되어집니다</span>.<span class="comment">"</span>,
+    <span class="comment">"siteUrl":</span> <span class="comment">"http://ossteam</span>.<span class="comment">github</span>.<span class="comment">com"</span>,
+    <span class="comment">"author":</span> <span class="comment">"Jaehun</span>, <span class="comment">Park"</span>,
+    <span class="comment">"email":</span> <span class="comment">"jaehun@me</span>.<span class="comment">com"</span>,
+    <span class="comment">"keywords":</span> <span class="title">[</span>
+        <span class="comment">"php"</span>,
+        <span class="comment">"linux"</span>,
+        <span class="comment">"unixc"</span>
+    <span class="title">]</span>
+<span class="comment">}</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Save?</span> <span class="title">[</span><span class="comment">y/n</span>] <span class="comment">:</span>           <span class="comment">y</span>
+<span class="comment">========================================</span>
+<span class="comment">=</span> <span class="comment">clear</span> <span class="comment">public</span> <span class="comment">&amp;</span> <span class="comment">deployment</span> <span class="comment">directories</span>
+<span class="comment">========================================</span>
+<span class="string">.</span><span class="comment">/bin/clear</span>.<span class="comment">js</span>
+<span class="comment">haroo</span>&gt; <span class="comment">clear</span> <span class="comment">to</span> <span class="comment">deploy</span> <span class="comment">directory¶</span>
+<span class="comment">haroo</span>&gt; <span class="comment">clear</span> <span class="comment">to</span> <span class="comment">public</span> <span class="comment">directory</span>
+<span class="comment">========================================</span>
+<span class="comment">=</span> <span class="comment">setup</span> <span class="comment">repository</span> <span class="comment">for</span> <span class="comment">deployment</span>
+<span class="comment">========================================</span>
+<span class="comment">cd</span> <span class="string">.</span><span class="comment">/bin/;</span>.<span class="comment">/gh</span>-<span class="comment">pages</span>.<span class="comment">js</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Enter</span> <span class="comment">the</span> <span class="comment">read/write</span> <span class="comment">repository</span> <span class="comment">for</span> <span class="comment">your</span> <span class="comment">haroopress</span> <span class="comment">site</span> 
+<span class="comment">"git@github</span>.<span class="comment">com:</span>[<span class="comment">github</span>-<span class="comment">id</span>]<span class="comment">/</span>[<span class="comment">github</span>-<span class="comment">id</span>]<span class="string">.</span><span class="comment">github</span>.<span class="comment">com</span>.<span class="comment">git"</span>
+ &gt; <span class="comment">git@github</span>.<span class="comment">com:ossteam/ossteam</span>.<span class="comment">github</span>.<span class="comment">com</span>.<span class="comment">git</span>
+<span class="comment">haroo</span>&gt; <span class="comment">git</span> <span class="comment">remote</span> <span class="literal">-</span><span class="comment">v¶</span>
+<span class="comment">origin</span>  <span class="comment">git@github</span>.<span class="comment">com:/rhiokim/haroopress</span>.<span class="comment">git</span> <span class="comment">(fetch)</span>
+<span class="comment">origin</span>  <span class="comment">git@github</span>.<span class="comment">com:/rhiokim/haroopress</span>.<span class="comment">git</span> <span class="comment">(push)</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Start</span> <span class="comment">setting</span> <span class="comment">github</span> <span class="comment">pages</span> <span class="comment">branch</span> <span class="comment">¶</span>
+<span class="comment">Initialized</span> <span class="comment">empty</span> <span class="comment">Git</span> <span class="comment">repository</span> <span class="comment">in</span> <span class="comment">/home/help/haroopress/_deploy/</span>.<span class="comment">git/</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Completed</span> <span class="comment">git</span> <span class="comment">repository</span> <span class="comment">initialize</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Repository</span> <span class="comment">remote's</span> <span class="comment">name</span> <span class="comment">origin</span> <span class="literal">-</span>&gt; <span class="comment">haroopress</span> <span class="comment">¶</span>
+<span class="comment">haroo</span>&gt; <span class="comment">Git</span> <span class="comment">remote</span> <span class="comment">add</span> <span class="comment">to</span> <span class="comment">origin</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Added</span> <span class="comment">remote</span> <span class="comment">git@github</span>.<span class="comment">com:ossteam/ossteam</span>.<span class="comment">github</span>.<span class="comment">com</span>.<span class="comment">git</span> <span class="comment">as</span> <span class="comment">origin</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Set</span> <span class="comment">origin</span> <span class="comment">as</span> <span class="comment">default</span> <span class="comment">remote</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Created</span> <span class="comment">inex</span>.<span class="comment">html</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">git</span> <span class="comment">add</span> <span class="string">.</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Copy</span> <span class="comment">temp</span> <span class="comment">commiter</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">git</span> <span class="comment">commit</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">Remove</span> <span class="comment">temp</span> <span class="comment">commiter</span> <span class="comment">¶</span>
+
+<span class="comment">haroo</span>&gt; <span class="comment">git</span> <span class="comment">remote</span> <span class="comment">add</span> <span class="comment">origin</span> <span class="comment">¶</span>
+<span class="comment">========================================</span>
+<span class="comment">=</span> <span class="comment">create</span> <span class="comment">default</span> <span class="comment">data</span> <span class="comment">set</span>
+<span class="comment">========================================</span>
+<span class="string">.</span><span class="comment">/bin/init</span>.<span class="comment">js</span>
+<span class="comment">haroo</span>&gt; <span class="comment">created</span> <span class="comment">initial</span> <span class="comment">data</span>
+<span class="comment">haroo</span>&gt; <span class="comment">site</span> <span class="comment">data</span> <span class="comment">initialized</span>
+<span class="comment">clear</span>
+
+<span class="comment">cat</span> <span class="string">.</span><span class="comment">/lib/haroopress/QUICK</span>.<span class="comment">markdown</span>
+<span class="comment">#</span> <span class="comment">Quick</span> <span class="comment">guide</span>
+<span class="comment">$</span> <span class="comment">make</span> <span class="comment">gen</span>       <span class="comment">//</span> <span class="comment">정적</span> <span class="comment">페이지</span> <span class="comment">생성</span>
+<span class="comment">$</span> <span class="comment">make</span> <span class="comment">preview</span>   <span class="comment">//</span> <span class="comment">미리보기</span>
+<span class="comment">$</span> <span class="comment">make</span> <span class="comment">new</span>-<span class="comment">post</span>  <span class="comment">//</span> <span class="comment">새로운</span> <span class="comment">글</span> <span class="comment">작성</span>
+<span class="comment">$</span> <span class="comment">make</span> <span class="comment">new</span>-<span class="comment">page</span>  <span class="comment">//</span> <span class="comment">새로운</span> <span class="comment">페이지</span> <span class="comment">작성</span>
+<span class="comment">$</span> <span class="comment">make</span> <span class="comment">new</span>-<span class="comment">slide</span> <span class="comment">//</span> <span class="comment">새로운</span> <span class="comment">웹</span> <span class="comment">슬라이드</span> <span class="comment">작성</span>
+
+<span class="comment">#</span> <span class="comment">Read</span> <span class="comment">more</span>
+<span class="comment">*</span> <span class="comment">하루프레스</span> <span class="comment">공식</span> <span class="comment">:</span> <span class="comment">http://haroopress</span>.<span class="comment">com</span>
+<span class="comment">*</span> <span class="comment">새로운</span> <span class="comment">포스트</span> <span class="comment">작성</span> <span class="comment">:</span> <span class="comment">http://haroopress</span>.<span class="comment">com/post/haroopress</span>-<span class="comment">posting</span>-<span class="comment">guide/</span>
+<span class="comment">*</span> <span class="comment">블로그</span> <span class="comment">퍼블리싱</span> <span class="comment">:</span> <span class="comment">http://haroopress</span>.<span class="comment">com/post/haroopress</span>-<span class="comment">deploy</span>-<span class="comment">to</span>-<span class="comment">github/</span>
+
+<span class="comment">Copyright</span> <span class="comment">©</span> <span class="comment">haroopress</span> <span class="comment">/</span> <span class="comment">Contact</span> <span class="comment">to</span> <span class="comment">rhio</span>.<span class="comment">kim@gmail</span>.<span class="comment">com</span>
+<span class="comment">Source</span> <span class="comment">http://github</span>.<span class="comment">com/rhiokim/haroopress</span>
+<span class="comment">Issue</span> <span class="comment">https://github</span>.<span class="comment">com/rhiokim/haroopress/issues</span>
+<span class="title">[</span><span class="comment">help@JTE</span> <span class="comment">haroopress</span>]<span class="comment">$</span> 
+</code></pre><p>설치가 완료된 것입니다. 수고하셨습니다.</p>
+            </div>
+        </div>
+    </div>
+</div><!-- /container -->
+
+
+        <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="span12 ">
+                    <div class="well">
+                        <p class="pull-right"><a href="#">Back to top</a></p>
+                            <strong>haroopress</strong> developed by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a>,<a href="http://twitter.com/haroopress" target="_blank">@haroopress</a> and source in <a href="https://github.com/rhiokim/haroopress" target="_blank">github</a><br/>
+                            Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+                            Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // fix sub nav on scroll
+        var $win = $(window)
+          , $nav = $('.subnav')
+          , navTop = $('.subnav').length && $('.subnav').offset().top - 40
+          , isFixed = 0
+
+        processScroll()
+
+        $win.on('scroll', processScroll)
+
+        function processScroll() {
+          var i, scrollTop = $win.scrollTop()
+          if (scrollTop >= navTop && !isFixed) {
+            isFixed = 1
+            $nav.addClass('subnav-fixed')
+          } else if (scrollTop <= navTop && isFixed) {
+            isFixed = 0
+            $nav.removeClass('subnav-fixed')
+          }
+        }
+    </script>
+    
+    
+
+    
+</body>
+</html>

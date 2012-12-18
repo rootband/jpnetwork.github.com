@@ -65,6 +65,10 @@
                 <a href="/slides">Slides</a>
               </li>
                 
+                    <li>
+                        <a href="/Haroopress_to_CentOS/">하루프레스 설치하기[CentOS편]</a>
+                    </li>
+                
             </ul>
           </div>
         </div>
@@ -114,6 +118,8 @@
                     <li class="nav-header">Categories</li>
                     <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
                     
+                    <li><a href="/category/web"><i class="icon-book"></i> web</a></li>
+                    
                     <li><a href="/category/apple"><i class="icon-book"></i> apple</a></li>
                     
                     <li><a href="/category/linux"><i class="icon-book"></i> linux</a></li>
@@ -125,6 +131,11 @@
 <div class="well">
     <ul class="nav nav-list">
         <li class="nav-header">Recent Articles</li>
+    
+        <li>
+            <a href="/post/markdown" target="_blank">MarkDown 기본 메뉴얼
+            <span class="label">JaehunPark</span></a>
+        </li>
     
         <li>
             <a href="/post/how-to-clear-command-line-history" target="_blank">커맨드라인 히스토리 깨끗이 지우는 방법
@@ -162,35 +173,9 @@
                         </div>
 
                         <div class="markdown-wrapper">
-                            <h3 id="toc_7">하루프레스를 이용한 블로그</h3>
+                            <h3 id="toc_19">하루프레스를 이용한 블로그</h3>
 <p>Root.SO에 오신것을 환영합니다.
-이 페이지는 하루프레스로 제작되어진 페이지이며, <a href="http://github.com/jpnetwork/jpnetwork.github.com%EA%B3%BC">http://github.com/jpnetwork/jpnetwork.github.com과</a> 연동되어지는 사이트입니다.</p>
-<h3 id="toc_8">HarooPress to CentOS?</h3>
-<p>하루프레스는 Mac과 Ubuntu뿐만 아니라 CentOS 5.x이상 (REDHAT계열)에서 사용이
-가능합니다. CentOS 5.x 버젼에서는 파이썬의 버젼이 낮으므로, 따로 Python을 업그레이드 하셔야 사용이 가능하십니다.</p><p>기본적으로 설치 하셔야 하는 것은 다음과 같습니다.</p>
-<ul>
-<li>node 0.8.16</li>
-<li>node-gyp 0.8.1</li>
-<li>python 2.6.x </li>
-<li>npm 최신버젼</li>
-</ul>
-
-<ol>
-<li>Python-2.5.6.tgz Source 설치</li>
-<li>curl <a href="http://npmjs.org/install.sh">http://npmjs.org/install.sh</a> | sh</li>
-<li>git clone <a href="http://github.com/ry/node.git">http://github.com/ry/node.git</a> </li>
-<li>n 0.8.16</li>
-<li>git clone <a href="https://github.com/rhiokim/haroopress.git">https://github.com/rhiokim/haroopress.git</a></li>
-<li>make init 에러발생 (robotskirt부분이 에러나면 정상)</li>
-<li>haroopress/Makefile내에 14번째줄 
-cd ./node<em>modules/robotskirt;node-gyp rebuild를 아래와 같이 수정
-cd ./node</em>modules/robotskirt;node-gyp build</li>
-<li>vi node_modules/robotskirt/build/Makefile 수정
-148번째줄 crsT를 crs로 수정</li>
-<li>haroopress 디렉토리에서 make init 수행</li>
-<li>설정 세팅하시면 됩니다.</li>
-</ol>
-
+이 페이지는 하루프레스로 제작되어진 페이지이며, <a href="http://github.com/jpnetwork/jpnetwork.github.com%EA%B3%BC">http://github.com/jpnetwork/jpnetwork.github.com과</a> 연동되어지는 사이트입니다.</p><p><a href="http://root.so/Haroopress_to_CentOS/">CentOS에 하루프레스 설치하기</a></p>
                         </div>
                         <hr />
                                             
