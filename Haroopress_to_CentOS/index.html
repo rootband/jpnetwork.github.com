@@ -106,7 +106,7 @@
 <p><a href="http://haroopress.com">하루프레스</a>는 <a href="http://twitter.com/rhiokim">@rhiokim</a>님께서 만드신
 node기반의 정적 페이지 기반의 블로깅 엔진입니다.</p>
 <blockquote>
-<p><em class="label label-important"><strong><i class="icon-flag"></i> 하루프레스는 아래의 사항들을 이용하여 설치가 가능합니다.</strong></em></p></blockquote>
+<p><em class="label label-important"><strong><i class="icon-flag"></i> 하루프레스는 아래의 사항들을 이용하여 CentOS Linux에 설치가 가능합니다.</strong></em></p></blockquote>
 
 <h3 id="toc_22">CentOS Linux Version</h3>
 <p>개발패키지인 Development tools 그룹패키지가 yum으로 설치되어있는 상황입니다.</p><pre><code class="">    <span class="title">CentOS</span> <span class="number">5</span>.x 버젼 : python-<span class="number">2</span>.<span class="number">4</span>.<span class="number">3</span>-<span class="number">46</span>.el5 (Python <span class="number">2</span>.<span class="number">6</span>버젼으로 소스 컴파일후 아래의 방법을 수행하시면 됩니다.)
@@ -150,7 +150,7 @@ v<span class="number">0</span>.<span class="number">8.16</span>
     [root<span class="variable">@JTE</span> help]<span class="comment">#</span>
 </code></pre>
 <h3 id="toc_26">github에 사용될 SSH Key 생성</h3>
-<p>일반 계정으로 사용할 예정이므로, 반드시 일반 계정으로 접속하여 생성하시면 됩니다.</p><pre><code class="shell"><span class="title">[</span><span class="comment">help@JTE</span> <span class="comment">~</span>]<span class="comment">$</span> <span class="comment">ssh</span>-<span class="comment">keygen</span> 
+<p>일반 계정으로 사용할 예정이므로, 반드시 일반 계정으로 접속하여 생성하시면 됩니다.</p><pre><code class="shell"><span class="title">[</span><span class="comment">help@JTE</span> <span class="comment">~</span>]<span class="comment">$</span> <span class="comment">ssh</span>-<span class="comment">keygen</span> <span class="literal">-</span><span class="comment">t</span> <span class="comment">rsa</span> <span class="literal">-</span><span class="comment">C</span> <span class="comment">"input</span> <span class="comment">your</span> <span class="comment">email</span> <span class="comment">address"</span> 
 <span class="comment">Generating</span> <span class="comment">public/private</span> <span class="comment">rsa</span> <span class="comment">key</span> <span class="comment">pair</span>.
 <span class="comment">Enter</span> <span class="comment">file</span> <span class="comment">in</span> <span class="comment">which</span> <span class="comment">to</span> <span class="comment">save</span> <span class="comment">the</span> <span class="comment">key</span> <span class="comment">(/home/help/</span>.<span class="comment">ssh/id_rsa):</span> 
 <span class="comment">Created</span> <span class="comment">directory</span> <span class="comment">'/home/help/</span>.<span class="comment">ssh'</span>.
@@ -191,7 +191,9 @@ Hi ossteam! Yo<span class="string">u've successfully authenticated, but GitHub d
 <span class="class">Receiving</span> <span class="method">objects:</span> <span class="number">100</span>% (<span class="number">5948</span>/<span class="number">5948</span>), <span class="number">15.12</span> <span class="class">MiB</span> | <span class="number">1.87</span> <span class="class">MiB</span>/s, done.
 <span class="class">Resolving</span> <span class="method">deltas:</span> <span class="number">100</span>% (<span class="number">2622</span>/<span class="number">2622</span>), done.
 [help@<span class="class">JTE</span> ~]<span class="char">$ </span> 
-</code></pre><p>설치는 완료되었지만, 완벽히 진행된 것이 아닙니다. node-git에러가 동작됩니다.</p><pre><code class="">[help@<span class="type">JTE</span> haroopress]$ make init
+</code></pre><p>설치는 완료되었지만, 완벽히 진행된 것이 아닙니다. node-git에러가 동작됩니다.
+이는 OSX에서 설치시에 전역 모듈로 설치가 필요하나, 리눅스에서는 이에 대하여
+오류를 발생시킵니다.</p><pre><code class="">[help@<span class="type">JTE</span> haroopress]$ make init
 <span class="title">npm</span> install -g node-gyp
 <span class="title">npm</span> http <span class="type">GET</span> https://registry.npmjs.org/node-gyp
 <span class="title">npm</span> http <span class="number">304</span> https://registry.npmjs.org/node-gyp
