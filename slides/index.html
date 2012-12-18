@@ -15,6 +15,7 @@
     <![endif]-->
 
     <link href="/rss.xml" rel="alternate" title="ROOT BLOG" type="application/rss+xml">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <!-- Le styles -->
     <link rel="canonical" href="http://www.root.so">
@@ -39,34 +40,39 @@
     <script src="/js/apps/github.js"></script>
     <script src="/js/apps/twitter.js"></script>
 </head>
+
 <body data-spy="scroll" data-target=".subnav" data-offset="50">
 
-        <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
+    <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
         <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
 
-          <a class="pull-right" href="/rss.xml"><span class="icon-rss"></span></a>
-          
-
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/archives">Archives</a>
-              </li>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/archives">Archives</a>
+                    </li>
+                    
+                </ul>
+            </div>
+            <div class="social">
                 
-            </ul>
-          </div>
+                <a class="rss" href="/rss.xml">RSS</a>
+            </div>
+            <form action="/search" id="search">
+                <input type="text" value="" placeholder="Search" name="q" id="search-text" class="placeholder">
+            </form>
         </div>
-      </div>
     </div>
+</div>
 
     <link href="/css/archives.css" rel="stylesheet">
 <div class="container page-slides">
@@ -74,35 +80,28 @@
         <div class="span12">
             <div class="row">
                 <div class="span3">
-                                <div class="well">
+                    			<div class="well category">
                 <ul class="nav nav-list">
-                    <li class="nav-header">Categories</li>
-                    <li class=""><a href="/category"><i class="icon-home"></i> Home</a></li>
+                    <li class="nav-header title">Categories</li>
+                    <li class="active"><a href="/category">Home</a></li>
                     
-                    <li><a href="/category/apple"><i class="icon-book"></i> apple</a></li>
+                    <li><a href="/category/apple">apple</a></li>
                     
-                    <li><a href="/category/linux"><i class="icon-book"></i> linux</a></li>
+                    <li><a href="/category/linux">linux</a></li>
                     
                 </ul>
             </div>
-
                         
     <div class="well contributors">
-        <div class="pull-right">
-            <a href="/authors"><i class=" icon-info-sign"></i></a>
-        </div>
-        <h6>contributors</h6>
+        <h6 class="title"><a href="/authors">contributors</a></h6>
         
-        <div class="row-fluid">
-            <a class="pull-left" href="/authors/JaehunPark" title="undefined">
-                <img src="http://www.gravatar.com/avatar/f3d2e68249c5097e024ea895fcf5481d?r=pg&amp;s=128.jpg&amp;d=identicon" />
-            </a>
+        <div class="row-fluid contributor">
+            <a href="/authors/JaehunPark" title=""><img src="http://www.gravatar.com/avatar/f3d2e68249c5097e024ea895fcf5481d?r=pg&amp;s=128.jpg&amp;d=identicon" /></a>
             <p>
-                <strong>JaehunPark</strong><br/>
-                <a href="https://twitter.com//jaehun" target="_blank">@jaehun</a>
+                <strong>JaehunPark</strong><br>
+                <span>@jaehun</span>
             </p>
         </div>
-        <hr>
         
     </div>
     
@@ -124,21 +123,20 @@
         <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="span12 ">
+                <div class="span12">
                     <div class="well">
-                        <p class="pull-right"><a href="#">Back to top</a></p>
-                            Contact <a href="mailto:jaehun@me.com">jaehun@me.com</a><br/>
-                            Blog Make by <a href="mailto:rhio.kim@gmail.com">rhio.kim@gmail.com</a><br/>
-                            Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                        <p class="pull-right"><a href="#" class="backtotop">Back to top</a></p>
+                            <strong>haroopress</strong> developed by <a href="http://twitter.com/rhiokim" target="_blank">@rhiokim</a>,<a href="http://twitter.com/haroopress" target="_blank">@haroopress</a> and source in <a href="https://github.com/rhiokim/haroopress" target="_blank">github</a><br/>
+                            Designed and built with all the love in the world <a href="http://twitter.com/twitter" target="_blank">@twitter</a> by <a href="http://twitter.com/mdo" target="_blank">@mdo</a> and <a href="http://twitter.com/fat" target="_blank">@fat</a>.<br />
+                            Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
                     </div>
                 </div>
             </div>
         </div>
     </footer>
 
-
     
 
-    
+
 </body>
 </html>
