@@ -102,23 +102,23 @@
                         <g:plusone size="medium"></g:plusone>
                     </li>
                 </ul>
-                <h3 id="toc_21">CentOS에 하루프레스 설치하기</h3>
+                <h3 id="toc_23">CentOS에 하루프레스 설치하기</h3>
 <p><a href="http://haroopress.com">하루프레스</a>는 <a href="http://twitter.com/rhiokim">@rhiokim</a>님께서 만드신
 node기반의 정적 페이지 기반의 블로깅 엔진입니다.</p>
 <blockquote>
 <p><em class="label label-important"><strong><i class="icon-flag"></i> 하루프레스는 아래의 사항들을 이용하여 CentOS Linux에 설치가 가능합니다.</strong></em></p></blockquote>
 
-<h3 id="toc_22">CentOS Linux Version</h3>
+<h3 id="toc_24">CentOS Linux Version</h3>
 <p>개발패키지인 Development tools 그룹패키지가 yum으로 설치되어있는 상황입니다.</p><pre><code class="">    <span class="title">CentOS</span> <span class="number">5</span>.x 버젼 : python-<span class="number">2</span>.<span class="number">4</span>.<span class="number">3</span>-<span class="number">46</span>.el5 (Python <span class="number">2</span>.<span class="number">6</span>버젼으로 소스 컴파일후 아래의 방법을 수행하시면 됩니다.)
     CentOS <span class="number">6</span>.x 버젼 : python-<span class="number">2</span>.<span class="number">6</span>.<span class="number">6</span>-<span class="number">29</span>.el6 (사용가능)
 </code></pre>
-<h3 id="toc_23">github.com 계정 생성</h3>
+<h3 id="toc_25">github.com 계정 생성</h3>
 <p><code>하루 프레스</code> 엔진은 노드와 6가지의 오픈소스의 조합으로 만들어졌습니다. 그렇다 보니 코어 엔진을 제외한 대부분의 모듈들이 Git 서브 모듈로 관리되고 있습니다.  </p><p>물론 <code>하루 프레스</code> 도 Git 을 통해 관리되고 있습니다.  아래 공식 사이트에서 각 운영체제에 맞는 버젼을 설치하세요.</p>
 <ul>
 <li><a href="http://git-scm.com/">http://git-scm.com/</a></li>
 </ul>
 
-<h3 id="toc_24">node 설치</h3>
+<h3 id="toc_26">node 설치</h3>
 <pre><code class="shell"><span class="title">cd</span> /usr/local/src/
 <span class="title">wget</span> http://nodejs.org/dist/v0<span class="number">.8</span><span class="number">.2</span>/node-v0<span class="number">.8</span><span class="number">.16</span>.tar.gz
 <span class="title">tar</span> xvfz node-v0<span class="number">.8</span><span class="number">.16</span>.tar.gz 
@@ -131,7 +131,7 @@ v<span class="number">0</span>.<span class="number">8.16</span>
 [root<span class="variable">@JTE</span> help]<span class="comment"># npm --version</span>
 <span class="number">1.1</span>.<span class="number">69</span>
 </code></pre>
-<h3 id="toc_25">node-gyp 설치</h3>
+<h3 id="toc_27">node-gyp 설치</h3>
 <p>[root@JTE help]# npm install -g node-gyp</p><pre><code class="">    설치 완료시 아래와 같이 출력됩니다.
     node-gyp<span class="variable">@0</span>.<span class="number">8.1</span> /usr/lib/node_modules/node-gyp
     ├── osenv<span class="variable">@0</span>.<span class="number">0</span>.<span class="number">3</span>
@@ -149,7 +149,7 @@ v<span class="number">0</span>.<span class="number">8.16</span>
     └── minimatch<span class="variable">@0</span>.<span class="number">2.9</span> (sigmund<span class="variable">@1</span>.<span class="number">0</span>.<span class="number">0</span>, lru-cache<span class="variable">@2</span>.<span class="number">0</span>.<span class="number">4</span>)
     [root<span class="variable">@JTE</span> help]<span class="comment">#</span>
 </code></pre>
-<h3 id="toc_26">github에 사용될 SSH Key 생성</h3>
+<h3 id="toc_28">github에 사용될 SSH Key 생성</h3>
 <p>일반 계정으로 사용할 예정이므로, 반드시 일반 계정으로 접속하여 생성하시면 됩니다.</p><pre><code class="shell"><span class="title">[</span><span class="comment">help@JTE</span> <span class="comment">~</span>]<span class="comment">$</span> <span class="comment">ssh</span>-<span class="comment">keygen</span> <span class="literal">-</span><span class="comment">t</span> <span class="comment">rsa</span> <span class="literal">-</span><span class="comment">C</span> <span class="comment">"input</span> <span class="comment">your</span> <span class="comment">email</span> <span class="comment">address"</span> 
 <span class="comment">Generating</span> <span class="comment">public/private</span> <span class="comment">rsa</span> <span class="comment">key</span> <span class="comment">pair</span>.
 <span class="comment">Enter</span> <span class="comment">file</span> <span class="comment">in</span> <span class="comment">which</span> <span class="comment">to</span> <span class="comment">save</span> <span class="comment">the</span> <span class="comment">key</span> <span class="comment">(/home/help/</span>.<span class="comment">ssh/id_rsa):</span> 
@@ -178,7 +178,7 @@ v<span class="number">0</span>.<span class="number">8.16</span>
 Hi ossteam! Yo<span class="string">u've successfully authenticated, but GitHub does not provide shell access.
 [help@JTE ~]$ 
 </code></pre>
-<h3 id="toc_27">haroopress</h3>
+<h3 id="toc_29">haroopress</h3>
 <p>소스 복제할 때에는 아래와 같이 복제할 위치를 사이트명으로 해주는 것도 좋습니다.</p><pre><code class="">// <span class="class">Github</span>.com 의 소스를 내 <span class="class">PC</span> 로 복제합니다.
 <span class="char">$ </span>git clone git@github.<span class="method">com:</span>rhiokim/haroopress.git /path/to/[domain]
 <span class="char">$ </span>git clone git@github.<span class="method">com:</span>rhiokim/haroopress.git /home/help/jpnetwork.github.com
