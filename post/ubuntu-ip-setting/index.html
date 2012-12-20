@@ -203,7 +203,8 @@ $ sudo vi /etc/network/interfaces
 
 # <span class="title">Static</span> <span class="title">Route</span>
 <span class="title">up</span> <span class="title">route</span> <span class="title">add</span> -<span class="title">net</span> 192.168.11.0/24 <span class="title">gw</span> 192.168.11.1 <span class="title">dev</span> <span class="title">eth0</span>
-</code></pre><p>필자의 경우 2번째 NIC카드에 외부망을 연결하고 1번째 NIC에 내부망을 연동하였습니다.</p><p>따라서, 아이피가 필요하므로 <code># Static Route</code> 밑 부분에 route를 추가해 준 것입니다.</p><p>Ubuntu에서는 따로 route를 해주는 경우가 없으므로 참조하시기 바랍니다.</p>
+</code></pre><p>필자의 경우 2번째 NIC카드에 외부망을 연결하고 1번째 NIC에 내부망을 연동하였습니다.</p><p>따라서, 아이피가 필요하므로 <code># Static Route</code> 밑 부분에 route를 추가해 준 것입니다.</p><p>Ubuntu에서는 따로 route를 해주는 경우가 없으므로 참조하시기 바랍니다.</p><p>모든 설정이 완료되었다면 아래와 같이 명령을 내려 재시작을 합니다.</p><pre><code class="">su<span class="operator"><span class="keyword">do</span> /etc/init.d/networking restart
+</code></pre>
                         </div>
                         <hr />
                                             
